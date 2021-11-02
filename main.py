@@ -1,24 +1,22 @@
 from core import *
-from core.file_worker import add_site_to_block, delete_site_from_block
+
+from core.exceptions import ParseException
+
 from core.parser import parse_command
 
-greeting_message = 'Commands:\n 1. block [ips separate by ,]\n 2. unblock [ips separate by ,]'
+greeting_message = 'Commands:\n 1. block [site1 site2 ...]\n 2. unblock [site1 site2 ...]\n 3. list'
 
 def main():
     print(greeting_message)
     while True:
         print('command...')
         command = input()
-        command, site = parse_command(command)
-        if command == 'block':
-            add_site_to_block(HOST_FILE, site, REDIRECT_URL)
-        if command == 'unblock':
-            delete_site_from_block(HOST_FILE, site, REDIRECT_URL)
-
-
-file = open(HOST_FILE, 'r')
-for l in file:
-    print(l)
+        try:
+            action, sites = parse_command(command)
+            action(HOST_FILE, sites, REDIRECT_URL)
+            print('Done')
+        except ParseException as e:
+            print('Exception: %s' % e.message)
 
 
 if __name__ == '__main__':
