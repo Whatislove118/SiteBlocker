@@ -23,4 +23,6 @@ else:
 
 if not IS_ADMIN:
     print('This program requires administrator privileges. Please, run program as administrator.')
+    print('Press any key to close the program')
+    input()
     sys.exit(1)

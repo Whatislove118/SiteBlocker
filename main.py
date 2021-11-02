@@ -4,7 +4,7 @@ from core.exceptions import ParseException
 
 from core.parser import parse_command
 
-greeting_message = 'Commands:\n 1. block [site1 site2 ...]\n 2. unblock [site1 site2 ...]\n 3. list'
+greeting_message = 'Commands:\n 1. block [site1 site2 ...]\n 2. unblock [site1 site2 ...]\n 3. list\n 4. exit'
 
 def main():
     print(greeting_message)
